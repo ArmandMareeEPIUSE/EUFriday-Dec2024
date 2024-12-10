@@ -39,7 +39,7 @@ Resources:
               Configuration:
                 ConnectionArn: !Ref SourceGitHubConnection
                 FullRepositoryId: ArmandMareeEPIUSE/EUFriday-Dec2024
-                BranchName: main
+                BranchName: Example_Solution
                 OutputArtifactFormat: CODE_ZIP
               OutputArtifacts:
                 - Name: SourceOutput
