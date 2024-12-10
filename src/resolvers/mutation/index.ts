@@ -4,6 +4,9 @@ import { GraphQLSchema } from 'graphql';
 import logger from '../../utils/logger';
 import { GraphQLContext } from '../../context';
 import Dummy from './Dummy';
+import Movie from './Movie';
+import Actor from './Actor';
+import MovieActor from './MovieActor';
 
 /**************************************************************
  *                     ADD RESOLVERS HERE                     *
@@ -31,6 +34,9 @@ export interface MutationComponent {
 
 const resolverComponents: MutationComponent[] = [
   { name: 'Dummy', component: Dummy },
+  { name: 'Movie', component: Movie },
+  { name: 'Actor', component: Actor },
+  { name: 'MovieActor', component: MovieActor },
 ];
 
 /**************************************************************

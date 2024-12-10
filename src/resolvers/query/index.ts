@@ -16,6 +16,9 @@ import { addResolversToSchema } from '@graphql-tools/schema';
 import logger from '../../utils/logger';
 import { GraphQLContext } from '../../context';
 import Dummy from './Dummy';
+import Movie from './Movie';
+import Actor from './Actor';
+import MovieActor from './MovieActor';
 
 interface QueryComponent {
   name: string;
@@ -39,6 +42,9 @@ interface QueryComponent {
 
 const resolverComponents: QueryComponent[] = [
   { name: 'Dummy', component: Dummy },
+  { name: 'Movie', component: Movie },
+  { name: 'Actor', component: Actor },
+  { name: 'MovieActor', component: MovieActor },
 ];
 
 /**************************************************************

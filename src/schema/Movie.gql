@@ -1,0 +1,19 @@
+extend type Query {
+  movie(id: ID!): Movie
+  movies: [Movie!]!
+}
+
+extend type Mutation {
+  createMovie(title: String!, releaseDate: DateTime!): Movie!
+  updateMovie(id: ID!, title: String!, releaseDate: DateTime!): Movie!
+  deleteMovie(id: ID!): Movie!
+}
+
+type Movie {
+  id: ID!
+  title: String!
+  releaseDate: DateTime!
+
+  movieActors: [MovieActor!]!
+  actors: [Actor!]!
+}

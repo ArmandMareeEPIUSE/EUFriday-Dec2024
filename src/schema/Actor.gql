@@ -1,0 +1,19 @@
+extend type Query {
+  actor(id: ID!): Actor
+  actors: [Actor!]!
+}
+
+extend type Mutation {
+  createActor(name: String!, dateOfBirth: DateTime!): Actor!
+  updateActor(id: ID!, name: String!, dateOfBirth: DateTime!): Actor!
+  deleteActor(id: ID!): Actor!
+}
+
+type Actor {
+  id: ID!
+  name: String!
+  dateOfBirth: DateTime!
+
+  actorMovies: [MovieActor!]!
+  movies: [Movie!]!
+}

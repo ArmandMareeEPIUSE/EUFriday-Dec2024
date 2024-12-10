@@ -1,0 +1,24 @@
+extend type Mutation {
+  createMovieActor(
+    movieId: String!
+    actorId: String!
+    characterName: String!
+  ): MovieActor!
+  updateMovieActor(
+    id: ID!
+    movieId: String!
+    actorId: String!
+    characterName: String!
+  ): MovieActor!
+  deleteMovieActor(id: ID!): MovieActor!
+}
+
+type MovieActor {
+  id: ID!
+  movieId: String!
+  actorId: String!
+  characterName: String!
+
+  movie: Movie!
+  actor: Actor!
+}
