@@ -28,7 +28,7 @@ export const mutation = {
   ) => {
     return {
       id: `dummy-id-1`,
-      name: `dummy-name-${args.name}-context-${context.thisFieldIsAvailableInGraphQl}`,
+      name: `dummy-name-${args.name}-context-${context.prismaClientIsAvailableInTheContext}`,
     };
   },
   updateDummy: (
@@ -38,7 +38,7 @@ export const mutation = {
   ) => {
     return {
       id: `dummy-id-${args.id}`,
-      name: `dummy-name-${args.id}-context-${context.thisFieldIsAvailableInGraphQl}`,
+      name: `dummy-name-${args.id}-context-${context.prismaClientIsAvailableInTheContext}`,
     };
   },
   deleteDummy: (
@@ -48,7 +48,7 @@ export const mutation = {
   ) => {
     return {
       id: `dummy-id-${args.id}`,
-      name: `dummy-name-${args.id}-context-${context.thisFieldIsAvailableInGraphQl}`,
+      name: `dummy-name-${args.id}-context-${context.prismaClientIsAvailableInTheContext}`,
     };
   },
 };

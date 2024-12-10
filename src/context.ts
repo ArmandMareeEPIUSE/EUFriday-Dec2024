@@ -1,20 +1,14 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 export type GraphQLContext = {
   prisma: PrismaClient;
-  userClient: {
-    userId: string;
-    clientId: string;
-  };
+  prismaClientIsAvailableInTheContext: string;
 };
 
-export const createContext = (initialContext: any): GraphQLContext => ({
+export const createContext = (): GraphQLContext => ({
   prisma,
-  userClient: {
-    userId: initialContext.req.auth.userId,
-    clientId: initialContext.req.auth.clientId,
-  },
+  prismaClientIsAvailableInTheContext:
+    'The Prisma Client (used for reading the database) is available in the context.',
 });

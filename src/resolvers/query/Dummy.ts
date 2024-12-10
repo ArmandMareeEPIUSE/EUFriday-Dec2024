@@ -17,27 +17,29 @@ interface Dummy {
 }
 
 export const query = {
+  // this should resolve to types as defined in the GraphQL schema
   dummy: (parent: unknown, args: { id: string }, context: GraphQLContext) => {
     return {
       id: `dummy-id-${args.id}`,
-      name: `dummy-name-${args.id}-context-${context.thisFieldIsAvailableInGraphQl}`,
+      name: context.prismaClientIsAvailableInTheContext,
     };
   },
-  dummies: () => {
+  dummies: (parent: unknown, args: unknown, context: GraphQLContext) => {
     return [
       {
         id: `dummy-id-1`,
-        name: `dummy-name-1`,
+        name: context.prismaClientIsAvailableInTheContext,
       },
       {
         id: `dummy-id-2`,
-        name: `dummy-name-2`,
+        name: context.prismaClientIsAvailableInTheContext,
       },
     ];
   },
 };
 
 export const resolver = {
+  // this should resolve the individual fields in the types as defined in the GraphQL schema
   id: (parent: Dummy) => {
     return parent.id;
   },
