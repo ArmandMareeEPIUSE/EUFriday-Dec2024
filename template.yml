@@ -8,7 +8,7 @@
 # out of CodeBuild) to ECS.                                  #
 #                                                            #
 # Once completed, create a new Stack in CloudFormation AWS   #
-# Web Console, with the name 'EUF-Dec2024-USERNAME-pipeline' #
+# Web Console, with the name 'EUF-Dec2024-USERNAME-Pipeline' #
 # and upload this template to that.                          #
 ##############################################################
 
@@ -19,8 +19,60 @@ Resources:
     Properties:
       # Populate CodePipeline properties below this.
       # Here is a link to the documentation: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-pipeline.html
-
-      Tags:
+      ArtifactStores:
+        - ArtifactStore:
+            Location: !ImportValue EUF-Dec2024-PipelineS3Bucket
+            Type: S3
+          Region: us-east-2
+      Name: EUF-Dec2024-armandeufmaree
+      RestartExecutionOnUpdate: true
+      RoleArn: !ImportValue EUF-Dec2024-CodePipelineServiceRoleArn
+      Stages:
+        - Name: Source
+          Actions:
+            - Name: Checkout
+              ActionTypeId:
+                Category: Source
+                Owner: AWS
+                Provider: CodeStarSourceConnection
+                Version: '1'
+              Configuration:
+                ConnectionArn: !Ref SourceGitHubConnection
+                FullRepositoryId: ArmandMareeEPIUSE/EUFriday-Dec2024
+                BranchName: main
+                OutputArtifactFormat: CODE_ZIP
+              OutputArtifacts:
+                - Name: SourceOutput
+        - Name: Build
+          Actions:
+            - Name: Build
+              ActionTypeId:
+                Category: Build
+                Owner: AWS
+                Provider: CodeBuild
+                Version: '1'
+              Configuration:
+                ProjectName: !Ref CodeBuildProject
+              InputArtifacts:
+                - Name: SourceOutput
+              OutputArtifacts:
+                - Name: BuildOutput
+        - Name: Deploy
+          Actions:
+            - Name: Deploy
+              ActionTypeId:
+                Category: Deploy
+                Owner: AWS
+                Provider: ECS
+                Version: '1'
+              Configuration:
+                ClusterName: EUF
+                ServiceName: arn:aws:ecs:us-east-2:969613561073:service/EUF/EUF-Dec2024-armandeufmaree
+                FileName: imagedefinitions.json
+                DeploymentTimeout: '5'
+              InputArtifacts:
+                - Name: BuildOutput
+      Tags: # DO NOT MODIFY TAGS
         - Key: Owner
           Value: armand.maree@epiuse.com
         - Key: FIN
@@ -32,7 +84,41 @@ Resources:
     Properties:
       # Populate CodeBuild Project properties below this.
       # Here is a link to the documentation: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html
-
+      Name: EUF-Dec2024-armandeufmaree
+      Source:
+        Type: CODEPIPELINE
+        BuildSpec: buildspec.yml
+      Artifacts:
+        Type: CODEPIPELINE
+      ServiceRole: !ImportValue EUF-Dec2024-CodeBuildServiceRoleArn
+      Environment:
+        Type: LINUX_CONTAINER
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: aws/codebuild/amazonlinux2-x86_64-standard:4.0
+        EnvironmentVariables:
+          - Name: USERNAME
+            Value: armandeufmaree
+        PrivilegedMode: true
+      Tags: # DO NOT MODIFY TAGS
+        - Key: Owner
+          Value: armand.maree@epiuse.com
+        - Key: FIN
+          Value: armand.maree@epiuse.com
+        - Key: project
+          Value: EUF-Dec2024
+  SourceGitHubConnection:
+    # To finalize this connection. This is only needed once:
+    # 1) Go to: https://us-east-2.console.aws.amazon.com/codesuite/settings/connections?region=us-east-2&connections-meta=eyJmIjp7InRleHQiOiIifSwicyI6e30sIm4iOjIwLCJpIjowfQ
+    # 2) Click on the connection with your username
+    # 3) Click on "Update pending connection"
+    # 4) IMPORTANT: Make sure to leave the field 'App installation' blank!
+    # 5) Click on "Install a new app"
+    # 6) On the GitHub screen make sure you select your own GitHub user, not an organization (if there are any).
+    # 7) Once you are redirected back to AWS, click "Configure".
+    Type: AWS::CodeStarConnections::Connection
+    Properties:
+      ConnectionName: EUF-Dec2024-armandeufmaree # Change to your username
+      ProviderType: GitHub
       Tags:
         - Key: Owner
           Value: armand.maree@epiuse.com
