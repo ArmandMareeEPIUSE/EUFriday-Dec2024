@@ -1,9 +1,20 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { PrismaClient } from '@prisma/client';
+
+const prisma = new PrismaClient();
+
 export type GraphQLContext = {
-  thisFieldIsAvailableInGraphQl: string;
+  prisma: PrismaClient;
+  userClient: {
+    userId: string;
+    clientId: string;
+  };
 };
 
-export function createContext(): GraphQLContext {
-  return {
-    thisFieldIsAvailableInGraphQl: 'thisValueIsAvailableInGraphQl',
-  };
-}
+export const createContext = (initialContext: any): GraphQLContext => ({
+  prisma,
+  userClient: {
+    userId: initialContext.req.auth.userId,
+    clientId: initialContext.req.auth.clientId,
+  },
+});
