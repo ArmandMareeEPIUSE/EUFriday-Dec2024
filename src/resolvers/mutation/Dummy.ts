@@ -1,3 +1,14 @@
+/**************************************************************
+ *                        EXAMPLE FILE                        *
+ **************************************************************
+ * Use this file as an example of how to build GraphQL        *
+ * query resolvers.                                           *
+ *                                                            *
+ * NOTE: Since we are building a resolvers over multiple files*
+ * we have to export the functions in a specific format and   *
+ * then import them again in the index.ts file                *
+ **************************************************************/
+
 import { GraphQLContext } from '../../context';
 type DummyCreateInput = {
   name: string;

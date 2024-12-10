@@ -1,3 +1,14 @@
+##############################################################
+#                        EXAMPLE FILE                        #
+##############################################################
+# Use this file as an example of how to build GraphQL        #
+# schemas.                                                   #
+#                                                            #
+# NOTE: Since we are building a schema over multiple files   #
+# we have to use the "extend type" keywords to expand on     #
+# what is available in 'Query' and 'Mutation'                #
+##############################################################
+
 extend type Query {
   dummy(id: ID!): Dummy
   dummies: [Dummy!]!

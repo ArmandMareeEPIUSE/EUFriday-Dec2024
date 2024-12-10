@@ -10,13 +10,19 @@
   "scripts": {
     "test": "echo 'Not configured'",
     "buildonly": "tsc",
-    "build": "npm-run-all buildonly copyfiles",
     "copyfiles": "copyfiles --up 1 src/**/*.gql dist/",
+    "build": "npm-run-all buildonly copyfiles",
+    "generate": "prisma generate",
     "start": "node .",
     "dev": "nodemon src/index.ts",
     "lint": "eslint",
     "lint:fix": "npm run lint -- --fix",
-    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\""
+    "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
+    "newMigration": "npx prisma migrate dev --name",
+    "seed": "npx prisma db seed"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
   },
   "author": "Armand Maree",
   "license": "ISC",
@@ -40,6 +46,8 @@
   },
   "dependencies": {
     "@graphql-tools/schema": "^10.0.11",
+    "@paralleldrive/cuid2": "^2.2.2",
+    "@prisma/client": "^6.0.1",
     "dotenv": "^16.1.4",
     "express": "^4.18.2",
     "express-pino-logger": "^7.0.0",
@@ -47,6 +55,7 @@
     "graphql-middleware": "^6.1.35",
     "graphql-pino-middleware": "^0.0.2",
     "graphql-yoga": "^5.10.4",
-    "pino": "^8.14.1"
+    "pino": "^8.14.1",
+    "prisma": "^6.0.1"
   }
 }

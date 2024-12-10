@@ -1,3 +1,19 @@
+##############################################################
+#                        DO NOT MODIFY                       #
+##############################################################
+
+scalar Date
+scalar DateTime
+scalar JSON
+
+type Query {
+  health: String
+}
+
+type Mutation {
+  health: String
+}
+
 schema {
   query: Query
   mutation: Mutation

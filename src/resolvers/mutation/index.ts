@@ -5,6 +5,17 @@ import logger from '../../utils/logger';
 import Dummy from './Dummy';
 import { GraphQLContext } from '../../context';
 
+/**************************************************************
+ *                     ADD RESOLVERS HERE                     *
+ **************************************************************
+ * Add all the resolvers you create to the                    *
+ * 'resolverComponents` array following the                   *
+ * 'MutationComponent' structure.                             *
+ *                                                            *
+ * This file allows you to import your functions and then     *
+ * automatically convert them into GraphQL resolver functions.*
+ **************************************************************/
+
 export interface MutationComponent {
   name: string;
   component: {
@@ -18,12 +29,16 @@ export interface MutationComponent {
   };
 }
 
-const muationComponents: MutationComponent[] = [
+const resolverComponents: MutationComponent[] = [
   { name: 'Dummy', component: Dummy },
 ];
 
+/**************************************************************
+ *                DO NOT MODIFY BELOW THIS LINE               *
+ **************************************************************/
+
 export const loadMutationResolvers = (schema: GraphQLSchema): GraphQLSchema => {
-  muationComponents.forEach(({ name: componentName, component }) => {
+  resolverComponents.forEach(({ name: componentName, component }) => {
     Object.entries(component.mutation).forEach(
       ([mutationName, mutationResolver]) => {
         try {

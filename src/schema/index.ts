@@ -1,3 +1,14 @@
+/**************************************************************
+ *                        DO NOT MODIFY                       *
+ **************************************************************
+ * This file reads all .gql files in the current directory.   *
+ * Then it places them in one long string called `typeDefs`.  *
+ * Then it pulls in the resolvers from '../resolvers',        *
+ * and combines the schema and resolvers into an              *
+ * 'executableSchema' that GraphQL can use for executing      *
+ * queries.                                                   *
+ **************************************************************/
+
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import path from 'path';
 import fs, { readFileSync } from 'fs';

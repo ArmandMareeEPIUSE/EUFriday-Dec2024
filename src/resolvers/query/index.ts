@@ -1,4 +1,16 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+/**************************************************************
+ *                     ADD RESOLVERS HERE                     *
+ **************************************************************
+ * Add all the resolvers you create to the                    *
+ * 'resolverComponents` array following the 'QueryComponent'  *
+ * structure.                                                 *
+ *                                                            *
+ * This file allows you to import your functions and then     *
+ * automatically convert them into GraphQL resolver functions.*
+ **************************************************************/
+
 import { GraphQLSchema } from 'graphql';
 import { addResolversToSchema } from '@graphql-tools/schema';
 import logger from '../../utils/logger';
@@ -28,6 +40,10 @@ interface QueryComponent {
 const resolverComponents: QueryComponent[] = [
   { name: 'Dummy', component: Dummy },
 ];
+
+/**************************************************************
+ *                DO NOT MODIFY BELOW THIS LINE               *
+ **************************************************************/
 
 export const loadQueryResolvers = (schema: GraphQLSchema): GraphQLSchema => {
   addResolversToSchema({
