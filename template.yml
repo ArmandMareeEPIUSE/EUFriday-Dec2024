@@ -1,0 +1,42 @@
+##############################################################
+#                      MODIFY THIS FILE                      #
+##############################################################
+# Modify the 'Resources' section below to create a new AWS   #
+# CodePipeline. It should pull the code from GitHub. Then    #
+# execute the buildspec.yml file in AWS CodeBuild. And then  #
+# finally deploy the imagedefinitions.json file (that comes  #
+# out of CodeBuild) to ECS.                                  #
+#                                                            #
+# Once completed, create a new Stack in CloudFormation AWS   #
+# Web Console, with the name 'EUF-Dec2024-USERNAME-pipeline' #
+# and upload this template to that.                          #
+##############################################################
+
+AWSTemplateFormatVersion: '2010-09-09'
+Resources:
+  Pipeline:
+    Type: AWS::CodePipeline::Pipeline
+    Properties:
+      # Populate CodePipeline properties below this.
+      # Here is a link to the documentation: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codepipeline-pipeline.html
+
+      Tags:
+        - Key: Owner
+          Value: armand.maree@epiuse.com
+        - Key: FIN
+          Value: armand.maree@epiuse.com
+        - Key: project
+          Value: EUF-Dec2024
+  CodeBuildProject:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      # Populate CodeBuild Project properties below this.
+      # Here is a link to the documentation: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html
+
+      Tags:
+        - Key: Owner
+          Value: armand.maree@epiuse.com
+        - Key: FIN
+          Value: armand.maree@epiuse.com
+        - Key: project
+          Value: EUF-Dec2024
