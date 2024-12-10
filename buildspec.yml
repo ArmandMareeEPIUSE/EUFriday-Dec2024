@@ -15,7 +15,7 @@ phases:
     commands:
       - $(aws ecr get-login --region us-east-2 --no-include-email)
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
-      - REPOSITORY_URI=${CODEBUILD_WEBHOOK_ACTOR_ACCOUNT_ID}.dkr.ecr.us-east-2.amazonaws.com/euf-dec2024-${USERNAME}
+      - REPOSITORY_URI=969613561073.dkr.ecr.us-east-2.amazonaws.com/euf-dec2024-${USERNAME}
       - echo Repository URI is $REPOSITORY_URI
       - IMAGE_TAG=${COMMIT_HASH:=latest}
       - docker pull $REPOSITORY_URI:$IMAGE_TAG || docker pull $REPOSITORY_URI:latest || true
