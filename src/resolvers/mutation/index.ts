@@ -2,8 +2,8 @@
 import { addResolversToSchema } from '@graphql-tools/schema';
 import { GraphQLSchema } from 'graphql';
 import logger from '../../utils/logger';
-import Dummy from './Dummy';
 import { GraphQLContext } from '../../context';
+import Dummy from './Dummy';
 
 /**************************************************************
  *                     ADD RESOLVERS HERE                     *
