@@ -19,6 +19,7 @@
     "lint:fix": "npm run lint -- --fix",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "newMigration": "npx prisma migrate dev --name",
+    "migrate": "npx prisma migrate deploy",
     "seed": "npx prisma db seed"
   },
   "prisma": {
