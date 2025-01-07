@@ -30,6 +30,21 @@ Resources:
         - Key: project
           Value: EUF-Dec2024
   CodeBuildProject:
+    Type: AWS::CodeBuild::Project
+    Properties:
+      # Populate CodeBuild Project properties below this.
+      # Here is a link to the documentation: https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-codebuild-project.html
+
+      # YOUR CHANGES HERE
+
+      Tags: # DO NOT MODIFY TAGS
+        - Key: Owner
+          Value: armand.maree@epiuse.com
+        - Key: FIN
+          Value: armand.maree@epiuse.com
+        - Key: project
+          Value: EUF-Dec2024
+  SourceGitHubConnection:
     # To finalize this connection once upload to CloudFormation follow these steps below. This is only needed once:
     # 1) Go to: https://us-east-2.console.aws.amazon.com/codesuite/settings/connections
     # 2) Click on the connection with your username
@@ -38,14 +53,10 @@ Resources:
     # 5) Click on "Install a new app"
     # 6) On the GitHub screen make sure you select your own GitHub user, not an organization (if there are any).
     # 7) Once you are redirected back to AWS, click "Configure".
-    Type: AWS::CodeBuild::Project
+    Type: AWS::CodeStarConnections::Connection
     Properties:
-      onnectionName: EUF-Dec2024-USERNAME # IMPORTANT: Change this to your username
+      ConnectionName: EUF-Dec2024-armandeufmaree # IMPORTANT: Change to your username
       ProviderType: GitHub
-      Tags: # DO NOT MODIFY TAGS
+      Tags:
         - Key: Owner
           Value: armand.maree@epiuse.com
-        - Key: FIN
-          Value: armand.maree@epiuse.com
-        - Key: project
-          Value: EUF-Dec2024
