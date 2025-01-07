@@ -80,14 +80,6 @@ Resources:
         - Key: project
           Value: EUF-Dec2024
   CodeBuildProject:
-    # To finalize this connection once upload to CloudFormation follow these steps below. This is only needed once:
-    # 1) Go to: https://us-east-2.console.aws.amazon.com/codesuite/settings/connections
-    # 2) Click on the connection with your username
-    # 3) Click on "Update pending connection"
-    # 4) IMPORTANT: Make sure to leave the field 'App installation' blank!
-    # 5) Click on "Install a new app"
-    # 6) On the GitHub screen make sure you select your own GitHub user, not an organization (if there are any).
-    # 7) Once you are redirected back to AWS, click "Configure".
     Type: AWS::CodeBuild::Project
     Properties:
       # Populate CodeBuild Project properties below this.
@@ -115,7 +107,7 @@ Resources:
         - Key: project
           Value: EUF-Dec2024
   SourceGitHubConnection:
-    # To finalize this connection. This is only needed once:
+    # To finalize this connection once yploaded to CloudFormation follow the steps below. This is only needed once:
     # 1) Go to: https://us-east-2.console.aws.amazon.com/codesuite/settings/connections
     # 2) Click on the connection with your username
     # 3) Click on "Update pending connection"
