@@ -15,6 +15,8 @@ phases:
     commands:
       - $(aws ecr get-login --region us-east-2 --no-include-email)
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - REPOSITORY_URI=969613561073.dkr.ecr.us-east-2.amazonaws.com/euf-dec2024-${USERNAME}
+      - echo $REPOSITORY_URI
       - IMAGE_TAG=${COMMIT_HASH:=latest}
       - docker pull $REPOSITORY_URI:$IMAGE_TAG || docker pull $REPOSITORY_URI:latest || true
   build:
@@ -25,7 +27,7 @@ phases:
     commands:
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
-      - printf '[{"name":"ecs-service","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+      - printf '[{"name":"EUF-Dec2024-%s","imageUri":"%s"}]' $USERNAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
 artifacts:
   files:
     - imagedefinitions.json
