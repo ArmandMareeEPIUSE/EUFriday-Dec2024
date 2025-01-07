@@ -107,7 +107,7 @@ Resources:
         - Key: project
           Value: EUF-Dec2024
   SourceGitHubConnection:
-    # To finalize this connection once yploaded to CloudFormation follow the steps below. This is only needed once:
+    # To finalize this connection once upload to CloudFormation follow these steps below. This is only needed once:
     # 1) Go to: https://us-east-2.console.aws.amazon.com/codesuite/settings/connections
     # 2) Click on the connection with your username
     # 3) Click on "Update pending connection"
