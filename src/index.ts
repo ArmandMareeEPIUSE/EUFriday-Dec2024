@@ -36,5 +36,6 @@ app.use('/graphql', yoga);
 
 app.listen(PORT, () => {
   logger.info(`🚀 Server ready at http://localhost:${PORT}/`);
+  logger.info(`🚀 Yoga ready at   http://localhost:${PORT}/graphql`);
   logger.level = logLevel;
 });

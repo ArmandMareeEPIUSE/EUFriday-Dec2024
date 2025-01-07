@@ -1,4 +1,4 @@
-FROM public.ecr.aws/b2r7m8f2/node:20
+FROM node:20
 RUN mkdir -p /home/node/app && chown -R node:node /home/node/app
 WORKDIR /home/node/app
 
